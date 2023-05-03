@@ -26,25 +26,25 @@ binwidth = binedge[1:] - binedge[:-1]
 # normalise the histogram (divide the each count in the bin by total count)
 yval = histogram/np.sum(histogram)
 
-# finding cumulative distribution
-cumul_dist = np.cumsum(yval)
-
 # finding average weight of new born babies
 w = np.sum(bincentre * yval)
 
 # plotting probability density function (i.e histogram)
 plt.figure(dpi=600)
 plt.bar(bincentre, yval, width=0.85*binwidth,
-        label = "New born babies distribution")
-plt.xlabel('Weight of newborn babies', fontsize=10)
+        label = "Newborn babies distribution")
+plt.xlabel('Weight of newborns', fontsize=10)
 plt.ylabel('Probability', fontsize=10)
 plt.title("Weight Distribution Of Newborn Babies",
           fontsize=10, fontweight="bold")
 
 # plotting the mean value
-plt.plot([w,w],[0.0,max(yval)], c='red')
+plt.plot([w,w],[0.0,max(yval)], '--', c='red')
 text = '''Average, W = {}'''.format(w.astype(float))
 plt.text(x=w, y=max(yval), s=text, fontsize=10, c='red')
+
+# finding cumulative distribution
+cumul_dist = np.cumsum(yval)
 
 # finding min index such that index for cumulative value is above 25%
 min_index = 0
